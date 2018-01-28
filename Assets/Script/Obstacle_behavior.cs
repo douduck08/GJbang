@@ -12,7 +12,7 @@ public class Obstacle_behavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        obstacle.transform.position += new Vector3(-0.1f, 0, 0);
+        obstacle.transform.position += new Vector3(-0.05f, 0, 0);
       
 	}
 }
