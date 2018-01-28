@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65805683041720674}
   - component: {fileID: 23565754142552444}
   - component: {fileID: 114482699026175356}
+  - component: {fileID: 114767784168837652}
   m_Layer: 0
   m_Name: obstacle_wood2
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361832593442650}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1.839, y: 0.036928177, z: -0.44}
+  m_LocalPosition: {x: 27.83, y: -1.815998, z: -1.09}
   m_LocalScale: {x: 2.830071, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -91,7 +92,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361832593442650}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -108,3 +109,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacle: {fileID: 1361832593442650}
+--- !u!114 &114767784168837652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361832593442650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b32969dd86ba7643ba8620ff63b38d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 114482699026175356}
+  end: {fileID: 1361832593442650}
