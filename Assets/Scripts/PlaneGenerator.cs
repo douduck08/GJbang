@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter))]
-[RequireComponent(typeof(MeshCollider))]
-public class PlaneGenerator : MonoBehaviour {
+[System.Serializable]
+public class PlaneGenerator {
 
 	MeshFilter m_meshFilter;
 	MeshCollider m_meshCollider;
@@ -37,32 +36,43 @@ public class PlaneGenerator : MonoBehaviour {
 			return m_y;
 		}
 	}
+	
+	public List<Vector3> verticeList = new List<Vector3> ();
+	public List<Vector2> uvList = new List<Vector2> ();
+	public List<int> triangleList = new List<int> ();
+	public List<Color> colorList = new List<Color> ();
 
-	void OnValidate() {
-		Generate ();
-	}
+	public void Generate (Transform transform, Color color) {
+		if (m_meshFilter == null || m_meshCollider == null) {
+			m_meshFilter = transform.GetComponent<MeshFilter> ();
+			m_meshCollider = transform.GetComponent<MeshCollider> ();
+			return;
+		}
 
-	public void Generate () {
-		Mesh mesh = CreateMesh (m_width, m_height, m_x, m_y);
-		m_meshFilter = GetComponent<MeshFilter> ();
-		m_meshCollider = GetComponent<MeshCollider> ();
+		Mesh mesh = CreateMesh (m_width, m_height, m_x, m_y, color);
 		m_meshFilter.mesh = mesh;
 		m_meshCollider.sharedMesh = mesh;
 	}
 
-	Mesh CreateMesh (float width, float height, int x, int y) {
+	public void SetColor () {
+		m_meshFilter.sharedMesh.SetColors(colorList);
+	}
+
+	Mesh CreateMesh (float width, float height, int x, int y, Color color) {
 		Mesh mesh = new Mesh();
 		mesh.name = "ScriptedMesh";
 
+		verticeList.Clear();
+		uvList.Clear();
+		triangleList.Clear();
+		colorList.Clear();
+
 		float deltaPosX = width / x, deltaPosY = height / y;
 		float deltaUVX = 1f / x, deltaUVY = 1f / y;
-		List<Vector3> verticeList = new List<Vector3> ();
-		List<Vector2> uvList = new List<Vector2> ();
-		List<int> triangleList = new List<int> ();
-		
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
 				verticeList.Add (new Vector3 (-width / 2f + deltaPosX * i, 0.01f, -height / 2f + deltaPosY * j));
+				colorList.Add (color);
 				uvList.Add (new Vector2 (deltaUVX * i, deltaUVY * j));
 
 				int index = (y + 1) * i + j;
@@ -74,18 +84,22 @@ public class PlaneGenerator : MonoBehaviour {
 				triangleList.Add (index + y + 1);
 			}
 			verticeList.Add (new Vector3 (-width / 2f + deltaPosX * i, 0.01f, height / 2f));
+			colorList.Add (color);
 			uvList.Add (new Vector2 (deltaUVX * i, 1f));
 		}
 		for (int j = 0; j < y; j++) {
 			verticeList.Add (new Vector3 (width / 2f, 0.01f, -height / 2f + deltaPosY * j));
+			colorList.Add (color);
 			uvList.Add (new Vector2 (1f, deltaUVY * j));
 		}
 		verticeList.Add (new Vector3 (width / 2f, 0.01f, height / 2f));
+		colorList.Add (color);
 		uvList.Add (new Vector2 (1f, 1f));
 
 		mesh.vertices = verticeList.ToArray ();
 		mesh.uv = uvList.ToArray ();
 		mesh.triangles = triangleList.ToArray ();
+		mesh.SetColors (colorList);
 		mesh.RecalculateNormals();
      	return mesh;
 	}

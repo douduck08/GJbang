@@ -21,9 +21,15 @@ public class Click : MonoBehaviour {
             offset = click - player.transform.position;
         }
 
-
+        //rb.AddForce(offset * thrust);
         player.transform.position -= offset/100;
+        if(player.transform.position.z >=4.3)
+        {
+            float z = player.transform.position.z;
+            z = 4.3f;
 
+
+        }
        
 
 
