@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour {
 
@@ -16,5 +17,7 @@ public class UI : MonoBehaviour {
 		
 	}
 
-
+    public void Gstart() {
+        SceneManager.LoadScene("gameplay");
+    }
 }
