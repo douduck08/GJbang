@@ -10,7 +10,7 @@ public class trigger : MonoBehaviour {
 
     void Update() {
         Debug.Log(end.transform.position.x);
-        if (stage == 0 && end.transform.position.x < -37)
+        if (stage == 0 && end.transform.position.x < -10)
         {
             for (int i = 0; i < obs.Length; i++)
             {
