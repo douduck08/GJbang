@@ -1,23 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class UI : MonoBehaviour {
-
-
+public class Obstacle_behavior : MonoBehaviour {
+    public GameObject obstacle;
 	// Use this for initialization
 	void Start () {
-     
+
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        obstacle.transform.position += new Vector3(-0.05f, 0, 0);
+      
 	}
-
-    public void Gstart() {
-        SceneManager.LoadScene("gameplay");
-    }
 }
