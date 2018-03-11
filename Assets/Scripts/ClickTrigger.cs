@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class ClickTrigger : MonoBehaviour {
 	
-	FlowHandler flow;
+	//FlowHandler flow;
+	Player m_player;
 
 	void Awake() {
-		flow = GetComponent <FlowHandler> ();
+		//flow = GetComponent <FlowHandler> ();
+		m_player = GetComponent <Player> ();
 	}
 
 	void Update () {
 		if (Input.GetMouseButtonDown(0)) {
-			flow.OnClick ();
+			//flow.OnClick ();
+			m_player.OnClick (Camera.main.ScreenToWorldPoint(Input.mousePosition));
 		}
 	}
 }
