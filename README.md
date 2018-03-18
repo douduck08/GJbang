@@ -1,2 +1,2 @@
-# GJbang
-GGJ2018 entry
+# The extension project of GGJ 2018
+We are a team from Taipei.
