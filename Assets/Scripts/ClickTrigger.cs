@@ -1,21 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ClickTrigger : MonoBehaviour {
 	
-	//FlowHandler flow;
-	Player m_player;
+	[System.Serializable]
+ 	public class OnClickEvent : UnityEvent<Vector3> { }
+	public OnClickEvent onClick;
+
+	Camera m_mainCamera;
+	Vector3 m_worldPoint;
 
 	void Awake() {
-		//flow = GetComponent <FlowHandler> ();
-		m_player = GetComponent <Player> ();
+		m_mainCamera = Camera.main;
 	}
 
 	void Update () {
 		if (Input.GetMouseButtonDown(0)) {
-			//flow.OnClick ();
-			m_player.OnClick (Camera.main.ScreenToWorldPoint(Input.mousePosition));
+			m_worldPoint = m_mainCamera.ScreenToWorldPoint(Input.mousePosition);
+			onClick.Invoke (m_worldPoint);
 		}
+	}
+
+	public void Pause () {
+		this.enabled = false;
+	}
+
+	public void Resume () {
+		this.enabled = true;
 	}
 }

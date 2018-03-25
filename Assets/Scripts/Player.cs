@@ -20,6 +20,18 @@ public class Player : MonoBehaviour {
 		m_radius = m_collider.radius;
 	}
 
+	void Update () {
+		// TODO: gameover event trigger
+	}
+
+	public void Pause () {
+		// TODO: when UI open
+	}
+
+	public void Resume () {
+		// TODO: when UI close
+	}
+
 	public void OnClick (Vector3 pos) {
 		Vector2 diff = new Vector2 (pos.x - this.transform.position.x, pos.z - this.transform.position.z);
 		Vector2 normalized = diff.normalized;

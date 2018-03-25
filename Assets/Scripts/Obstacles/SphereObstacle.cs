@@ -22,11 +22,19 @@ public class SphereObstacle : ObstacleBase {
 	}
 
 	void OnEnable () {
+		var rigidbody = GetRigidbody ();
 		rigidbody.AddForce (new Vector3(-m_speed * rigidbody.mass * 100f, 0, 0));
 	}
 
 	void OnDisable () {
+		var rigidbody = GetRigidbody ();
 		rigidbody.velocity = Vector3.zero;
+	}
+
+	void Update () {
+		if (base.transform.position.x < -9f) {
+			ArriveEndPoint ();
+		}
 	}
 
     public override void WriteSetting (ObstacleSetting setting) {

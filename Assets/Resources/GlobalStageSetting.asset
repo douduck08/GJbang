@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefabDesk:
   - type: 0
-    prefab: {fileID: 1686872938722476, guid: b6f081adbfa7bb240a9233b6a0a7d09c, type: 2}
+    prefab: {fileID: 114502614680351824, guid: b6f081adbfa7bb240a9233b6a0a7d09c, type: 2}
